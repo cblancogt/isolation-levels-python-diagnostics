@@ -1,0 +1,85 @@
+============================================================
+  STN — Isolation Level Diagnostics Report
+  Generated: 2026-05-01 07:29:07
+============================================================
+
+============================================================
+  1. Database Isolation Level Settings
+============================================================
+
+  [1]
+      database_name                 : AdventureWorks2022
+      rcsi_enabled                  : True
+      snapshot_state                : OFF
+
+  [2]
+      database_name                 : STN_Lab
+      rcsi_enabled                  : False
+      snapshot_state                : ON
+
+
+============================================================
+  2. Blocked Sessions (1 found)
+============================================================
+
+  [1]
+      session_id                    : 68
+      blocked_by                    : 62
+      wait_type                     : LCK_M_IS
+      wait_ms                       : 8583
+      database_name                 : STN_Lab
+      query_snippet                 : USE STN_Lab;
+
+SELECT TOP 10
+    DeclaracionID,
+    MontoDeclarado
+FROM dbo.Declaracion WITH (HOLDLOCK)
+WHERE TipoImpuestoID = 1
+ORDER BY Declar
+
+
+============================================================
+  3. Lock Wait Activity (1 found)
+============================================================
+
+  [1]
+      session_id                    : 68
+      wait_type                     : LCK_M_IS
+      wait_duration_ms              : 8589
+      resource_description          : objectlock lockPartition=0 objid=965578478 subresource=FULL dbid=6 id=lock1d0616a0700 mode=X associatedObjectId=965578478
+      database_name                 : STN_Lab
+
+
+============================================================
+  4. Active Sessions
+============================================================
+
+  [1]
+      session_id                    : 69
+      database_name                 : STN_Lab
+      status                        : running
+      login_name                    : C13\crb
+      isolation_level               : READ COMMITTED
+      cpu_time                      : 0
+
+  [2]
+      session_id                    : 68
+      database_name                 : STN_Lab
+      status                        : running
+      login_name                    : carlos_roberto
+      isolation_level               : READ COMMITTED
+      cpu_time                      : 0
+
+
+============================================================
+  5. Summary
+============================================================
+
+  Blocked sessions : 1
+  Lock waits       : 1
+
+  [ACTION REQUIRED] Blocking detected.
+
+============================================================
+  End of Report — C1300S03
+============================================================
