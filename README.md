@@ -22,7 +22,7 @@ Default Read Committed blocks readers when writers are active. Under concurrent 
 | `03_dirty_read_demo.sql` | Dirty read captured and rollback confirmed |
 | `04_phantom_read_demo.sql` | Phantom read vs Serializable prevention |
 | `05_performance_by_isolation_level.sql` | Logical reads and elapsed time across all levels |
-| `config.py / connection.py / diagnostics.py / report.py / main.py` | Python DMV diagnostics → .txt report |
+| `config.py / connection.py / diagnostics.py / report.py / main.py` | Python DMV diagnostics - .txt report |
 
 ---
 
@@ -47,3 +47,8 @@ Enable RCSI as default. Serializable only for fiscal period closing. Read Uncomm
 ## How to Run
 
 ```bash
+# Python diagnostics
+pip install pyodbc
+python main.py
+```
+SQL scripts require two simultaneous SSMS sessions for scripts 02, 03, and 04.
